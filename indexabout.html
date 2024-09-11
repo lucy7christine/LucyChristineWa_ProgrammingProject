@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plan Africa Consulting Limited</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- Heading -->
+<header class="main-header">
+    <h1>We Design Websites & Information Systems For All Business Sectors</h1>
+</header>
+<nav class="navbar">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="indexabout.html">About</a></li>
+            <li><a href="indexcontactus.html">Contact Us</a></li>
+            <li><a href="indexpaymentsdonations.html">Payments/Donations</a></li>
+        </ul>
+    </nav>
+<Main>
+<section class="Container"></section>
+    <div class="About">  
+       <h3>Who we are</h3>
+       <p>We are a leading ICT and Innovations Company that Specializes in ICT Produts and Services.</p>
+        <h3>what we do</h3>       
+        <p>We design websites, Offer Web hosting services, Maintain & develop Information Systems.</p>
+        <h3>Vision</h3>    
+        <p>To be a leading ICT and Innovations Company in Africa and worldwide</p>
+        <h3>Mission</h3>
+        <p>To deliver globally competitive ICT services that meet the client needs by enhancing Clients' Profitability and Efficiency </p>
+        <h3>History</h3>
+        <p>Plan Africa was incorporated in Kenya in 2015. It's a vibrant ICT and Innovations company that focuses on customizing ICT needs of our Clients across all business Sectors.</p>
+        </div>
+    </div>   
+</section>
+<!-- Carousel Autoplay Images for clients from various Fields of Business-->
+<Section class ="Clients">
+    <h2>Some of Our Clients From the Various Business sectors</h2>
+    <img id="imagesclients" width="400" height="400"/>
+    <button id="prev-btn">‹</button>
+    <button id="next-btn">›</button>
+</Section>
+
+
+</Main>
+<!-- Management Team -->
+<section class="management-team"> 
+<h2>Meet our Management Team</h2>
+        <div class="team-carousel">
+            <div class="team-member">
+                <img src="images\EngPeter.jpg" alt="Eng. Peter Mwangi">
+                <h3>Eng. Peter Mwangi</h3>
+                <p>Chief Systems Developer & Consultant</p>
+            </div>
+            <div class="team-member">
+                <img src="images\MsLucy.jpg" alt="Ms. Lucy W.">
+                <h3>Ms. Lucy W.</h3>
+                <p>Chief Designer and Systems Analyst</p>
+            </div>
+            <div class="team-member">
+                <img src="images\MrGideon.jpg" alt="Mr. Gideon K.">
+                <h3>Mr. Gideon K.</h3>
+                <p>Quality Assurance Accounts and Audit</p>
+            </div>
+            <div class="team-member">
+                <img src="images\MsMercy.jpg" alt="Ms. Mercy Nekesa">
+                <h3>Ms. Mercy Nekesa</h3>
+                <p>Health Systems Analyst</p>
+            </div>
+            <div class="team-member">
+                <img src="images\MsLydia.jpg" alt="Ms. Lydia Dorea">
+                <h3>Ms. Lydia Dorea</h3>
+                <p>Marketing and Public Relations</p>
+            </div>
+    </div>
+    </section>
+
+    <!-- Request Form -->
+    <section class="request-form">
+        <h2>Request Form</h2>
+        <form>
+            <label for="business-name">Name of Business*:</label>
+            <input type="text" id="business-name" name="business-name" required>
+            <label for="email">Email*:</label>
+            <input type="email" id="email" name="email" required>
+            <label for="Request">Brief Description of the Request:</label>
+            <textarea id="Requst" name="Request"></textarea>
+            <button type="submit">Submit</button>
+            <div id="myModal" class="modal">
+              <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <p>Thank you for submitting your request!</p>
+              </div>
+            </div>    
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <p>copywright @ All Rights Reserved At Plan Africa Consulting Limited.</p>
+    </footer>
+
+    <script>
+ // Get the image element and the previous/next buttons
+const imgElement = document.getElementById('imagesclients');
+const prevBtn = document.getElementById('prev-btn');
+const nextBtn = document.getElementById('next-btn');
+
+// Image list
+const images = [
+  'images/Hotels&Resorts.jpg',
+  'images/RealEstate&Restaurants.jpg',
+  'images/Telecommunication&Construction.jpg',
+  'images/Small&MediumEnterprises.jpg',
+  'images/Saccos&Agribusiness.jpg',
+  'images/Hospitals&LearningInstittutions.jpg',
+];
+
+// Current image index
+let currentIndex = 0;
+
+// Function to change the image
+function changeImg(index) {
+  imgElement.src = images[index];
+}
+
+// Set the initial image to be displayed
+imgElement.src = images[currentIndex];
+
+// Add event listeners to the previous/next buttons
+prevBtn.addEventListener('click', () => {
+  currentIndex--;
+  if (currentIndex < 0) {
+    currentIndex = images.length - 1;
+  }
+  changeImg(currentIndex);
+});
+
+nextBtn.addEventListener('click', () => {
+  currentIndex++;
+  if (currentIndex >= images.length) {
+    currentIndex = 0;
+  }
+  changeImg(currentIndex);
+});
+
+// Autoplay interval
+let autoplayInterval;
+
+// Start autoplay when the browser loads
+window.onload = function() {
+  autoplayInterval = setInterval(() => {
+    currentIndex++;
+    if (currentIndex >= images.length) {
+      currentIndex = 0;
+    }
+    changeImg(currentIndex);
+  }, 3100); // change image every 3.1 seconds
+};
+
+// Function to open the modal
+function openModal() {
+  document.getElementById('myModal').style.display = 'block'; // Show the modal
+}
+
+// Function to close the modal
+function closeModal() {
+  document.getElementById('myModal').style.display = 'none'; // Hide the modal
+}
+
+// Get the form element
+const form = document.querySelector('form');
+
+// Add an event listener to the form submit event
+form.addEventListener('submit', (e) => {
+  e.preventDefault(); // prevent the form from submitting
+  openModal(); // open the modal
+  setTimeout(closeModal, 2000); // close the modal after 2 seconds
+});
+
+// Add an event listener to the close button
+document.querySelector('.close').addEventListener('click', closeModal);
+
+// Close the modal if the user clicks outside the modal content
+window.onclick = function(event) {
+  const modal = document.getElementById('myModal');
+  if (event.target === modal) {
+    closeModal(); // Close the modal
+  }
+}
+          </script>  
+        </body>
+        </html>
+       
